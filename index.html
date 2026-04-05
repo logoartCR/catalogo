@@ -3,29 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Catálogo de Productos</title>
+    <title>Catálogo LogoArtCR</title>
     <style>
-        /* Eliminamos margenes y fijamos el tamaño al 100% de la pantalla */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            overflow: hidden; /* Evita que GitHub cree un segundo scroll */
-            background-color: #f4f4f4; /* Color de fondo igual a tu app */
-        }
-        /* El iframe ocupa toda la pantalla de forma invisible */
-        iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #f4f4f4; }
+        iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
-    <iframe src="https://script.google.com/macros/s/AKfycbyc0YpejYgeS-fFU1Nzg6qyOFsWDdMwSzbPC9c5VcKwOLY3KawvMCWx9Lr0_3lB_vc/exec"></iframe>
+    <script>
+        // Este script detecta si el link de GitHub trae un ID y lo reenvía a Google
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        
+        // REEMPLAZA LA URL DE ABAJO POR TU NUEVA URL DE GOOGLE SCRIPT (PASO 1)
+        let googleUrl = "https://script.google.com/macros/s/AKfycbxWB5ocpsnGBBHtlorsoBfieoyI_2wbjMgyZFnpv7zNYgm_dPMijYvUhGJA5lSuKie2/exec";
+        
+        if (id) {
+            googleUrl += "?id=" + encodeURIComponent(id);
+        }
+        
+        document.write('<iframe src="' + googleUrl + '"></iframe>');
+    </script>
 </body>
 </html>

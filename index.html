@@ -5,31 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Catálogo LogoArtCR</title>
     <style>
+        /* Pantalla completa sin bordes */
         body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #f4f4f4; }
-        #contenedor-catalogo { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        #mi-catalogo { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
 
-    <iframe id="contenedor-catalogo" src=""></iframe>
+    <iframe id="mi-catalogo" src=""></iframe>
 
     <script>
-        // 1. Detectamos si en la barra de direcciones hay un ID de producto
-        const params = new URLSearchParams(window.location.search);
-        const idProducto = params.get('id');
+        // 1. Capturamos si hay un ID en el link (ej: ?id=105)
+        const urlParams = new URLSearchParams(window.location.search);
+        const idProducto = urlParams.get('id');
         
-        // 2. PEGA AQUÍ TU URL DE GOOGLE (La que obtuviste en el Nuevo Despliegue)
-        let urlGoogle = "https://script.google.com/macros/s/AKfycbxWB5ocpsnGBBHtlorsoBfieoyI_2wbjMgyZFnpv7zNYgm_dPMijYvUhGJA5lSuKie2/exec";
+        // 2. PEGA AQUÍ TU URL DE GOOGLE SCRIPT (la que copiaste en el Paso 1)
+        let urlFinal = "https://script.google.com/macros/s/AKfycbxgv-Wy_fDysz6cORagVwXQJY07d2S-MkU4PX8JZltXrEQN4aDhU1LIuzx3xHDlpCtl/exec";
         
-        // 3. Si hay un ID, se lo pegamos a la URL de Google para que sepa qué abrir
+        // 3. Si existe un ID, se lo inyectamos a la URL de Google
         if (idProducto) {
-            // Usamos un conector (? o &) dependiendo de si la URL ya tiene parámetros
-            const conector = urlGoogle.includes('?') ? '&' : '?';
-            urlGoogle += conector + "id=" + encodeURIComponent(idProducto);
+            // Revisamos si la URL ya tiene un '?' para usar '&' o '?'
+            const conector = urlFinal.includes('?') ? '&' : '?';
+            urlFinal += conector + "id=" + encodeURIComponent(idProducto);
         }
         
-        // 4. Le decimos al iframe que cargue esa dirección final
-        document.getElementById('contenedor-catalogo').src = urlGoogle;
+        // 4. Cargamos la URL final en el iframe
+        document.getElementById('mi-catalogo').src = urlFinal;
     </script>
 </body>
 </html>

@@ -1,62 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="Faviconlogoart.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="Faviconlogoart.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Catálogo LogoArtCR</title>
-    <meta name="description" content="Explora el catálogo de LogoArtCR y descubre nuestros diseños disponibles.">
+  <title>Catálogo LogoArtCR</title>
+  <meta name="description" content="Explora el catálogo de LogoArtCR.">
 
-    <!-- Open Graph (Vista previa en WhatsApp, Facebook, etc.) -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Catálogo LogoArtCR">
-    <meta property="og:description" content="Explora el catálogo de LogoArtCR y descubre nuestros diseños disponibles.">
-    <meta property="og:url" content="https://logoartcr.github.io/catalogo/">
-    <meta property="og:image" content="https://logoartcr.github.io/catalogo/Faviconlogoart.png">
+  <!-- Open Graph (Vista previa en WhatsApp, Facebook, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Catálogo LogoArtCR">
+  <meta property="og:description" content="Explora el catálogo de LogoArtCR.">
+  <meta property="og:url" content="https://logoartcr.github.io/catalogo/">
+  <meta property="og:image" content="https://logoartcr.github.io/catalogo/Faviconlogoart.png">
 
-    <style>
-        /* Pantalla completa sin bordes */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-            background-color: #f4f4f4;
-        }
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #f4f4f4;
+    }
 
-        #mi-catalogo {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-    </style>
+    #mi-catalogo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
 </head>
 <body>
 
-    <iframe id="mi-catalogo" src=""></iframe>
+  <iframe id="mi-catalogo" src=""></iframe>
 
-    <script>
-        // 1. Capturamos si hay un ID en el link (ej: ?id=105)
-        const urlParams = new URLSearchParams(window.location.search);
-        const idProducto = urlParams.get('id');
-        
-        // 2. URL DE GOOGLE SCRIPT
-        let urlFinal = "https://script.google.com/macros/s/AKfycbytWsMCwLgu3Ypcrqu_dQVG2l4TTVDJCbipBgTpwwf4ZNYSV3VjYcAqb87r4hqzAj4l/exec";
-        
-        // 3. Si existe un ID, se lo inyectamos a la URL de Google
-        if (idProducto) {
-            const conector = urlFinal.includes('?') ? '&' : '?';
-            urlFinal += conector + "id=" + encodeURIComponent(idProducto);
-        }
-        
-        // 4. Cargamos la URL final en el iframe
-        document.getElementById('mi-catalogo').src = urlFinal;
-    </script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const idProducto = (urlParams.get('id') || '').trim();
+
+    let urlFinal = "https://script.google.com/macros/s/AKfycbytWsMCwLgu3Ypcrqu_dQVG2l4TTVDJCbipBgTpwwf4ZNYSV3VjYcAqb87r4hqzAj4l/exec";
+
+    if (idProducto) {
+      const conector = urlFinal.includes('?') ? '&' : '?';
+      urlFinal += conector + "id=" + encodeURIComponent(idProducto);
+    }
+
+    document.getElementById('mi-catalogo').src = urlFinal;
+  </script>
 
 </body>
 </html>
